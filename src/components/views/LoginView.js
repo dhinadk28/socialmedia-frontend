@@ -50,7 +50,7 @@ const LoginView = () => {
             Socio
           </Link>
         </Typography>
-        <Typography variant="h5" gutterBottom>
+        <Typography color="secondary"variant="h5" gutterBottom>
           Login
         </Typography>
         <Typography color="secondary">

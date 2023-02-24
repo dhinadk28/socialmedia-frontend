@@ -1,4 +1,12 @@
-import { useState, useEffect } from "react";
+import {
+  Avatar,
+  Card,
+  Divider,
+  IconButton,
+  Stack,
+  Typography,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { MdRefresh } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -27,52 +35,40 @@ const FindUsers = () => {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-md p-4">
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center space-x-2">
-          <AiOutlineUser className="text-2xl text-gray-600" />
-          <h1 className="font-bold text-lg">Find Others</h1>
-        </div>
-        <button
-          className={`px-2 py-1 rounded-md ${
-            loading && "opacity-50 cursor-not-allowed"
-          }`}
-          disabled={loading}
-          onClick={handleClick}
-        >
-          <MdRefresh className="text-lg text-gray-600" />
-        </button>
-      </div>
-
-      <hr className="my-2" />
-
-      {loading ? (
-        <Loading />
-      ) : (
-        users &&
-        users.map((user) => (
-          <div
-            className="flex justify-between items-center"
-            key={user._id}
+    <Card>
+      <Stack spacing={2}>
+        <HorizontalStack justifyContent="space-between">
+          <HorizontalStack>
+            <AiOutlineUser />
+            <Typography>Find Others</Typography>
+          </HorizontalStack>
+          <IconButton
+            sx={{ padding: 0 }}
+            disabled={loading}
+            onClick={handleClick}
           >
-            <div className="flex items-center space-x-2">
-              <UserAvatar
-                width={30}
-                height={30}
-                username={user.username}
-              />
-              <h2>{user.username}</h2>
-            </div>
-            <Link
-              to={"/users/" + user.username}
-              className="text-blue-500"
-            >
-              View
-            </Link>
-          </div>
-        ))
-      )}
-    </div>
+            <MdRefresh />
+          </IconButton>
+        </HorizontalStack>
+
+        <Divider />
+
+        {loading ? (
+          <Loading />
+        ) : (
+          users &&
+          users.map((user) => (
+            <HorizontalStack justifyContent="space-between" key={user._id}>
+              <HorizontalStack>
+                <UserAvatar width={30} height={30} username={user.username} />
+                <Typography>{user.username}</Typography>
+              </HorizontalStack>
+              <Link to={"/users/" + user.username}>View</Link>
+            </HorizontalStack>
+          ))
+        )}
+      </Stack>
+    </Card>
   );
 };
 
