@@ -79,7 +79,7 @@ const SignupView = () => {
             Socio
           </Link>
         </Typography>
-        <Typography variant="h5" gutterBottom>
+        <Typography color='secondary'variant="h5" gutterBottom>
           Sign Up
         </Typography>
         <Typography color="secondary">
